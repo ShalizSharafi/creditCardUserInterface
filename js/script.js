@@ -5,28 +5,8 @@ const title = document.querySelector('.title')
 const fillCircle = document.querySelectorAll('.fillCircle')
 const circleAfter = document.querySelectorAll('.circleAfter')
 
-// const products = document.querySelector('.products')
-// const checkout = document.querySelector('.checkout')
-// const newCard = document.querySelector('.newCard')
 
-
-// link[0].addEventListener('click',()=>{
-//        products.style.display='none'
-//        checkout.style.display='flex'
-//        title.innerText='checkout'
-//        fillCircle[1].style.backgroundColor='purple'
-       
-// })
-
-// link[1].addEventListener('click',()=>{
-//        products.style.display='none'
-//        checkout.style.display='none'
-//        newCard.style.display='flex'
-//        title.innerText='new card'
-//        fillCircle[2].style.backgroundColor='purple'
-
-// })
-
+/// switching between tabs
 
 let currentStep = 0
 const state = [
@@ -56,3 +36,4 @@ link.forEach((val)=>{
 
 goToState(0)
 
+/// switching between tabs
