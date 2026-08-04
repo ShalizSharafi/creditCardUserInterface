@@ -19,11 +19,14 @@
        }
 
        .fillCircle{
-              @apply w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center  
+              @apply w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center duration-200
+              z-9
        }
 
-       .circleAfter{
-              @apply after:absolute after:bg-gray-200 after:left-10 after:h-1 after:top-1/2 after:w-[calc(100%-40px)] after:flex after:content-['']
+       
+
+       .circleBefore{
+              @apply before:absolute before:bg-gray-200 before:right-10 before:h-1 before:top-1/2 before:w-[calc(50%-60px)] before:flex before:content-[''] before:-z-1
        }
 
        .paymentSection{
@@ -58,6 +61,8 @@
        .newCard{
               @apply hidden flex-wrap w-full h-15
        }
+       
+       
 }
 
 
