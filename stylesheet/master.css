@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+@layer base{
+       h3{ 
+              @apply text-lg lg:text-xl capitalize font-bold text-violet 
+       }
+}
+
+
+@layer utilities{
+       .row{
+              @apply w-full flex flex-wrap
+       }
+}
+
+@layer components{
+       .circles{
+              @apply w-full flex justify-between items-center relative
+       }
+
+       .fillCircle{
+              @apply w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center  
+       }
+
+       .circleAfter{
+              @apply after:absolute after:bg-gray-200 after:left-10 after:h-1 after:top-1/2 after:w-[calc(100%-40px)] after:flex after:content-['']
+       }
+
+       .paymentSection{
+              @apply bg-off-white p-5  rounded-[10px] shadow-gray/50 shadow-[2px_2px_2px] 
+       }
+       .products{
+              @apply flex flex-wrap w-full  
+       }
+
+       .summery{
+              @apply w-3/4  flex flex-wrap p-5 rounded-[10px] bg-off-white border-violet grow border-[0.5px] hover:border duration-200 cursor-pointer
+       }
+       .quantity{
+              @apply w-fit flex flex-wrap *:w-full border-[0.5px] *:flex *:items-center *:justify-center border-violet rounded-[10px] hover:border duration-200 cursor-pointer
+       }
+       .quantityItems{
+              @apply text-[14px] text-charcoal/50  font-medium hover:text-charcoal duration-200
+       }
+
+       .details{
+              @apply w-full flex items-center justify-between border-b-[0.5px] border-light-violet/50
+       }
+
+       .link{
+              @apply w-full flex items-center justify-center bg-indigo text-off-white rounded-[10px] font-bold capitalize py-2.5
+              hover:bg-indigo/75 cursor-pointer duration-300
+       }
+
+       .checkout{
+              @apply hidden flex-wrap w-full  h-15
+       }
+       .newCard{
+              @apply hidden flex-wrap w-full h-15
+       }
+}
+
+
+
+@theme { 
+
+  /* Gradient backgrounds */
+  --color-violet: #7B68EE;
+  --color-light-violet: #8B7FE8;
+  --color-cyan: #5ED4E8;
+  --color-light-cyan: #7EE8E8;
+
+  /* Buttons */
+  --color-indigo: #5B4FE8;
+  --color-dark-indigo: #4A3FD6;
+
+  /* Card gradient */
+  --color-teal: #4FC3D9;
+  --color-blue: #5B7FE8;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+  --color-off-white: #FAFAFA;
+  --color-charcoal: #1A1A2E;
+  --color-gray: #8B8B9A;
+  --color-light-gray: #E8E8ED;
+
+  /* Selection state */
+  --color-pale-lavender: #EDEBFA;
+}
