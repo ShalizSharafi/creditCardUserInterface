@@ -86,6 +86,10 @@
        .scrollCircles{
               @apply w-3 h-3 border-indigo rounded-full border
        }
+
+       .filling{
+              @apply bg-indigo
+       }
 }
 
 

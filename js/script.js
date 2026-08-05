@@ -3,7 +3,6 @@
 const link = document.querySelectorAll('.link')
 const title = document.querySelector('.title')
 const fillCircle = document.querySelectorAll('.fillCircle')
-const circleAfter = document.querySelectorAll('.circleAfter')
 
 
 const summery = document.querySelectorAll('.summery')
@@ -21,10 +20,25 @@ const state = [
        {section:document.querySelector('.newCard'), title:'New Card'}
 ]
 
+
+/////go to the tabs function ==]]][[][][][\\\]////////////////\\\\\\\/\/\\\/\/\/\\/\/\\\/\/\/\/\/\/\/\/\/\
+
 function  goToState(x){
+       console.log('x: ',x)
+       console.log('currentStep:',currentStep)
        state.forEach((val,i)=>{
               val.section.style.display= i === x ? 'flex' : 'none'
        })
+
+       fillCircle.forEach((circle,i)=>{
+              circle.classList.toggle('filling', i <= x)
+              circle.innerHTML = `
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+</svg>
+              `
+       })
+
 
        title.innerText = state[x].title
 

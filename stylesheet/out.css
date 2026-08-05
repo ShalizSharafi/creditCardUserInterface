@@ -26,7 +26,6 @@
     --default-mono-font-family: var(--font-mono);
     --color-violet: #7B68EE;
     --color-light-violet: #8B7FE8;
-    --color-cyan: #5ED4E8;
     --color-light-cyan: #7EE8E8;
     --color-indigo: #5B4FE8;
     --color-off-white: #FAFAFA;
@@ -411,6 +410,14 @@
       width: calc(1 / 3 * 100%);
     }
   }
+  .\[\&\.filling\]\:before\:bg-indigo {
+    &.filling {
+      &::before {
+        content: var(--tw-content);
+        background-color: var(--color-indigo);
+      }
+    }
+  }
 }
 @layer base {
   h3 {
@@ -710,6 +717,9 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
     border-color: var(--color-indigo);
+  }
+  .filling {
+    background-color: var(--color-indigo);
   }
 }
 @property --tw-border-style {
