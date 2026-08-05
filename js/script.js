@@ -8,6 +8,8 @@ const fillCircle = document.querySelectorAll('.fillCircle')
 const summery = document.querySelectorAll('.summery')
 const quantityItems = document.querySelectorAll('.quantityItems')
 const quantityRows = document.querySelectorAll('.quantity')
+const goBack = document.querySelector('.goBack')
+const totalAmount = document.querySelector('.totalAmount')
 
 const details = document.querySelectorAll('.details')
 /// switching between tabs
@@ -39,9 +41,18 @@ function  goToState(x){
               `
        })
 
+       if(x == 0) goBack.style.display = 'none'
+       if(x >= 1){
+              goBack.style.display='flex'
+              goBack.innerHTML = `
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="indigo" class="size-3">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+
+              `
+       } 
 
        title.innerText = state[x].title
-
        currentStep = x
 }
 
@@ -58,6 +69,7 @@ goToState(0)
 
 /// switching between tabs
 
+///////FIRST TAB PRODUCT TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 ////// select summary card
 
 let vatRate = 0.15
@@ -105,7 +117,7 @@ function updateTotals(){
               details[0].children[1].innerText = subTotal
               details[1].children[1].innerText = VAT
               details[2].children[1].innerText = total
-
+              totalAmount.innerText = '$' + total
 
        console.log(total)
 }
@@ -113,3 +125,8 @@ function updateTotals(){
 
 console.log(items)
 ////// select summary card
+///////FIRST TAB PRODUCT TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
+
+///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
+
+

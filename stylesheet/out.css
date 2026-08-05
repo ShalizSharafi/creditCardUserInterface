@@ -195,12 +195,22 @@
   .flex {
     display: flex;
   }
+  .size-3 {
+    width: calc(var(--spacing) * 3);
+    height: calc(var(--spacing) * 3);
+  }
   .size-6 {
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
   }
-  .h-full {
-    height: 100%;
+  .w-4\/12 {
+    width: calc(4 / 12 * 100%);
+  }
+  .w-5\/12 {
+    width: calc(5 / 12 * 100%);
+  }
+  .w-6\/12 {
+    width: calc(6 / 12 * 100%);
   }
   .w-fit {
     width: fit-content;
@@ -219,6 +229,9 @@
   }
   .items-start {
     align-items: flex-start;
+  }
+  .justify-between {
+    justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
@@ -293,8 +306,8 @@
     --tw-gradient-to: var(--color-pale-lavender);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .object-cover {
-    object-fit: cover;
+  .object-contain {
+    object-fit: contain;
   }
   .p-2\.5 {
     padding: calc(var(--spacing) * 2.5);
@@ -326,6 +339,9 @@
   }
   .text-\[15px\] {
     font-size: 15px;
+  }
+  .text-\[16px\] {
+    font-size: 16px;
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
@@ -375,6 +391,10 @@
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-gray) 50%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
@@ -399,10 +419,31 @@
       justify-content: center;
     }
   }
+  .group-hover\:text-off-white {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        color: var(--color-off-white);
+      }
+    }
+  }
   .before\:right-\[calc\(50\%\+20px\)\] {
     &::before {
       content: var(--tw-content);
       right: calc(50% + 20px);
+    }
+  }
+  .hover\:bg-indigo {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-indigo);
+      }
+    }
+  }
+  .hover\:text-off-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-off-white);
+      }
     }
   }
   .lg\:w-1\/3 {
@@ -655,8 +696,8 @@
   .checkoutFigures {
     display: flex;
     height: calc(var(--spacing) * 14);
-    width: calc(1 / 4 * 100%);
-    flex-grow: 1;
+    width: calc(var(--spacing) * 25);
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
@@ -668,10 +709,32 @@
     }
     background-color: var(--color-off-white);
     padding: calc(var(--spacing) * 2.5);
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+    &:hover {
+      @media (hover: hover) {
+        --tw-scale-x: 95%;
+        --tw-scale-y: 95%;
+        --tw-scale-z: 95%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        border-style: var(--tw-border-style);
+        border-width: 1.5px;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        border-color: var(--color-indigo);
+      }
+    }
   }
   .card {
     display: flex;
     width: 250px;
+    cursor: pointer;
     flex-wrap: wrap;
     border-radius: 10px;
     --tw-gradient-position: to bottom left;
@@ -683,6 +746,9 @@
     --tw-gradient-to: var(--color-fuchsia-500);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     padding: calc(var(--spacing) * 2.5);
+    --tw-shadow: 2px 2px 2px var(--tw-shadow-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-indigo) 50%, transparent) var(--tw-shadow-alpha), transparent);
     --tw-duration: 200ms;
     transition-duration: 200ms;
     &:hover {
@@ -691,6 +757,17 @@
         --tw-scale-y: 90%;
         --tw-scale-z: 90%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        border-style: var(--tw-border-style);
+        border-width: 2px;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        border-color: var(--color-indigo);
       }
     }
     &:hover {
@@ -720,6 +797,12 @@
   }
   .filling {
     background-color: var(--color-indigo);
+  }
+  .goBack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--spacing) * 2);
   }
 }
 @property --tw-border-style {
