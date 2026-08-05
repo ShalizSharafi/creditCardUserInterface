@@ -9,7 +9,10 @@ const circleAfter = document.querySelectorAll('.circleAfter')
 const summery = document.querySelectorAll('.summery')
 const quantityItems = document.querySelectorAll('.quantityItems')
 const quantityRows = document.querySelectorAll('.quantity')
+
+const details = document.querySelectorAll('.details')
 /// switching between tabs
+
 
 let currentStep = 0
 const state = [
@@ -43,11 +46,15 @@ goToState(0)
 
 ////// select summary card
 
+let vatRate = 0.15
+let total
+let VAT
+
 const items = [
        {price:1234, quantity:1},
        {price:156, quantity:1}
 ]
-
+updateTotals()
 quantityItems.forEach((val)=>{
        val.addEventListener('click',()=>{
 
@@ -60,16 +67,35 @@ quantityItems.forEach((val)=>{
               if(temp == 'plus'){
                      newQ += 1
                      items[index].quantity = newQ
+                     updateTotals()
                      val.closest('.quantity').children[1].innerText = items[index].quantity
               }else if(temp == 'minus'){
                      if( newQ > 1){
                             newQ -= 1
                              items[index].quantity = newQ
+                             updateTotals()
                             val.closest('.quantity').children[1].innerText = items[index].quantity
                      }
               }
        })
 })
+
+function updateTotals(){
+       let subTotal  =0
+       items.forEach((item)=>{
+              subTotal += (item.price) * (item.quantity)
+       })
+
+              VAT = subTotal * vatRate
+              total = parseFloat(VAT + subTotal)
+              details[0].children[1].innerText = subTotal
+              details[1].children[1].innerText = VAT
+              details[2].children[1].innerText = total
+
+
+       console.log(total)
+}
+
 
 console.log(items)
 ////// select summary card
