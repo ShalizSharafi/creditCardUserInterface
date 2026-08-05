@@ -51,7 +51,7 @@
               
        }
 
-       .summery-items1{
+       .summery-items{
               @apply w-3/4 flex *:text-charcoal/75 *:font-medium *:text-sm
        }
 
