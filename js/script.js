@@ -142,20 +142,23 @@ goBack.addEventListener('click',()=>{
 ///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
 const cards = [
-       {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234'},
-       {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199'}
+       {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234',id:1},
+       {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199',id:2}
 ]
 
 function cardsFunction(){
+       cardSection.innerHTML = ''
+              let nextCardId = 3
        cards.forEach((item)=>{
               let card = document.createElement('div')
               card.classList.add('card')
-              let last4 = item.number.slice(12,17)
+              let last4 = item.number.slice(-4)
               console.log(last4)
               let masked = '*'.repeat((item.number.slice(0,-4)).length)
               console.log(masked)
               let fullmasked = masked + last4
               let displayNumber = fullmasked.match(/.{1,4}/g).join(' - ')
+              card.dataset.id=item.id
               card.innerHTML=`
                <p class="text-white text-[15px] font-medium flex items-center justify-center name">${item.name}</p>
                                           <div class="row justify-start gap-2">
@@ -172,9 +175,24 @@ function cardsFunction(){
                                                  </div>
                                           </div>
               `
+              
               cardSection.appendChild(card)
-
-
+              
        })
+       let selectedCardId = null
+       cardSection.addEventListener('click',(e)=>{
+              let selectedCard = e.target.closest('.card')
+              console.log(selectedCard)
+              let cardId = Number(selectedCard.getAttribute('data-id'))
+              let currentCard = cards.find((val)=> val.id == cardId)
+              console.log('currencard: ', currentCard)
+              selectedCardId = cardId
+
+              let allCards = cardSection.querySelectorAll('.card')
+              allCards.forEach((item)=>{
+                     item.classList.toggle('selected', item === selectedCard )
+              })
+             })
 }
 cardsFunction()
+

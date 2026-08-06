@@ -68,7 +68,7 @@
               @apply hidden flex-wrap w-full gap-5
        }
        .newCard{
-              @apply hidden flex-wrap w-full h-15
+              @apply hidden flex-wrap w-full 
        }
        
        .checkoutFigures{
@@ -97,6 +97,16 @@
 
        .card-bg{
               @apply  from-light-violet  to-light-cyan
+       }
+
+       .selected{
+              @apply border-2 border-indigo
+       }
+       .cardComponents{
+              @apply w-full flex justify-between items-center 
+       }
+       .cardNumberInp{
+              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
        }
 }
 
