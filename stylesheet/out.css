@@ -290,16 +290,8 @@
     }
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
-  .from-light-violet {
-    --tw-gradient-from: var(--color-light-violet);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .from-violet {
     --tw-gradient-from: var(--color-violet);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-light-cyan {
-    --tw-gradient-to: var(--color-light-cyan);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-pale-lavender {
@@ -351,9 +343,6 @@
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
-  .text-black {
-    color: var(--color-black);
-  }
   .text-black\/50 {
     color: color-mix(in srgb, #000 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -395,10 +384,6 @@
     --tw-duration: 200ms;
     transition-duration: 200ms;
   }
-  .duration-300 {
-    --tw-duration: 300ms;
-    transition-duration: 300ms;
-  }
   .\*\:flex {
     :is(& > *) {
       display: flex;
@@ -436,13 +421,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-indigo);
-      }
-    }
-  }
-  .hover\:text-off-white {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-off-white);
       }
     }
   }
@@ -736,6 +714,7 @@
     width: 250px;
     cursor: pointer;
     flex-wrap: wrap;
+    gap: calc(var(--spacing) * 2.5);
     border-radius: 10px;
     --tw-gradient-position: to bottom left;
     @supports (background-image: linear-gradient(in lab, red, red)) {
@@ -800,9 +779,15 @@
   }
   .goBack {
     display: flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     padding: calc(var(--spacing) * 2);
+  }
+  .card-bg {
+    --tw-gradient-from: var(--color-light-violet);
+    --tw-gradient-to: var(--color-light-cyan);
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
 }
 @property --tw-border-style {

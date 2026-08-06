@@ -10,6 +10,7 @@ const quantityItems = document.querySelectorAll('.quantityItems')
 const quantityRows = document.querySelectorAll('.quantity')
 const goBack = document.querySelector('.goBack')
 const totalAmount = document.querySelector('.totalAmount')
+const cardSection = document.querySelector('.cardSection')
 
 const details = document.querySelectorAll('.details')
 /// switching between tabs
@@ -77,8 +78,8 @@ let total
 let VAT
 
 const items = [
-       {price:1234, quantity:1},
-       {price:156, quantity:1}
+       {price:120, quantity:1},
+       {price:110, quantity:1}
 ]
 updateTotals()
 quantityItems.forEach((val)=>{
@@ -127,6 +128,53 @@ console.log(items)
 ////// select summary card
 ///////FIRST TAB PRODUCT TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
+
+////go to the previous tab
+
+goBack.addEventListener('click',()=>{
+       if(currentStep > 0){
+       goToState(currentStep - 1)
+       }
+})
+
+
+
 ///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
+const cards = [
+       {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234'},
+       {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199'}
+]
 
+function cardsFunction(){
+       cards.forEach((item)=>{
+              let card = document.createElement('div')
+              card.classList.add('card')
+              let last4 = item.number.slice(12,17)
+              console.log(last4)
+              let masked = '*'.repeat((item.number.slice(0,-4)).length)
+              console.log(masked)
+              let fullmasked = masked + last4
+              let displayNumber = fullmasked.match(/.{1,4}/g).join(' - ')
+              card.innerHTML=`
+               <p class="text-white text-[15px] font-medium flex items-center justify-center name">${item.name}</p>
+                                          <div class="row justify-start gap-2">
+                                                 <span class="digits number">${displayNumber}</span>
+                                          </div>
+                                          <div class="row">
+                                                 <div class="w-fit flex-wrap flex *:w-full *:items-center *:flex *:justify-center">
+                                                 <span class="text-off-white text-[12px]">valid</span>
+                                                 <span class="text-off-white text-[12px] expiry">${item.expiry}</span>
+                                                 </div>
+                                                 <div class="w-fit flex-wrap flex *:w-full *:items-center *:flex *:justify-center">
+                                                        <span class="text-off-white text-[12px]">cvv</span>
+                                                        <span class="text-off-white text-[12px] cvv ">${item.cvv}</span>
+                                                 </div>
+                                          </div>
+              `
+              cardSection.appendChild(card)
+
+
+       })
+}
+cardsFunction()

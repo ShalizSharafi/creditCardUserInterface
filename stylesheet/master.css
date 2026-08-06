@@ -76,7 +76,7 @@
        }
 
        .card{
-              @apply p-2.5 flex flex-wrap bg-linear-to-bl from-light-violet to-fuchsia-500 rounded-[10px] w-[250px] hover:opacity-80 duration-200 hover:scale-90 cursor-pointer hover:border-2 hover:border-indigo shadow-indigo/50 shadow-[2px_2px_2px]
+              @apply p-2.5 flex flex-wrap bg-linear-to-bl from-light-violet to-fuchsia-500 rounded-[10px] w-[250px] hover:opacity-80 duration-200 hover:scale-90 cursor-pointer hover:border-2 hover:border-indigo shadow-indigo/50 shadow-[2px_2px_2px] gap-2.5
        }
 
        .digits{
@@ -92,7 +92,11 @@
        }
 
        .goBack{
-              @apply p-2 flex items-center justify-center  
+              @apply p-2 flex items-center justify-center  cursor-pointer
+       }
+
+       .card-bg{
+              @apply  from-light-violet  to-light-cyan
        }
 }
 
