@@ -24,7 +24,7 @@
                                    <span class="goBack"></span><h3 class="title">Products</h3>
                             </div>
                      </header>
-                     <div class="row paymentSection relative">
+                     <div class="row paymentSection relative overflow-hidden">
                             <!-- ///products -->
                             <div class="products gap-2.5">
                                    <div class="row mb-10">
@@ -198,11 +198,32 @@
                                           </a>
                                    </div>
                             </div>
-                            <div class="popUp flex-wrap hidden w-full h-full absolute top-0 left-0 bg-red-200 items-center justify-center">
-                                   <a class=" returnBtn">
-                                          <span>return to the main page</span>
-                                   </a>
-                            </div>
+                          
+
+
+                            <!-- ///////pop up/ ///////////////////// -->
+
+                             <div class="popUp flex-wrap hidden w-full h-full absolute top-0 left-0 items-center justify-center bg-charcoal/40 backdrop-blur-sm p-5">
+       <div class="flex w-full flex-wrap items-center justify-center gap-5 bg-off-white rounded-[20px] p-8  shadow-[0px_10px_30px_rgba(0,0,0,0.15)]">
+
+              <div class="flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-violet to-cyan">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z" />
+                     </svg>
+              </div>
+
+              <div class="row items-center justify-center gap-1">
+                     <h3 class="text-charcoal font-bold text-[17px]">Redirecting to your bank</h3>
+                     <p class="text-gray text-[13px] text-center">Please wait while we securely connect you</p>
+              </div>
+
+              <span class="popupTimer text-indigo font-bold text-[28px]">00:00</span>
+
+              <a class="returnBtn">
+                     Cancel and return
+              </a>
+       </div>
+</div>
                      </div>
               </div>
        </section>
