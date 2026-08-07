@@ -11,14 +11,14 @@ const quantityRows = document.querySelectorAll('.quantity')
 const goBack = document.querySelector('.goBack')
 const totalAmount = document.querySelector('.totalAmount')
 const cardSection = document.querySelector('.cardSection')
-
+const scrollCirclesSection = document.querySelector('.scrollCirclesSection')
 
 const expiryInp = document.querySelectorAll('.expiryInp')
 const nameInp = document.querySelectorAll('.nameInp')
 const cvvInp = document.querySelectorAll('.cvvInp')
 const cardNumberInp = document.querySelectorAll('.cardNumberInp')
 const cardComponents = document.querySelectorAll('.cardComponents')
-
+const checkInp = document.getElementById('checkSaveInp')
 
 const addNewCardBtn = document.querySelector('.addNewCardBtn')
 const saveCardBtn = document.querySelector('.saveCardBtn')
@@ -148,7 +148,20 @@ goBack.addEventListener('click',()=>{
        }
 })
 
+ let selectedCardId = null
+       cardSection.addEventListener('click',(e)=>{
+              let selectedCard = e.target.closest('.card')
+              console.log(selectedCard)
+              let cardId = Number(selectedCard.getAttribute('data-id'))
+              let currentCard = cards.find((val)=> val.id == cardId)
+              console.log('currencard: ', currentCard)
+              selectedCardId = cardId
 
+              let allCards = cardSection.querySelectorAll('.card')
+              allCards.forEach((item)=>{
+                     item.classList.toggle('selected', item === selectedCard )
+              })
+             })
 
 ///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
@@ -190,20 +203,8 @@ function cardsFunction(){
               cardSection.appendChild(card)
               
        })
-       let selectedCardId = null
-       cardSection.addEventListener('click',(e)=>{
-              let selectedCard = e.target.closest('.card')
-              console.log(selectedCard)
-              let cardId = Number(selectedCard.getAttribute('data-id'))
-              let currentCard = cards.find((val)=> val.id == cardId)
-              console.log('currencard: ', currentCard)
-              selectedCardId = cardId
-
-              let allCards = cardSection.querySelectorAll('.card')
-              allCards.forEach((item)=>{
-                     item.classList.toggle('selected', item === selectedCard )
-              })
-             })
+      
+             createScrollCircles()
 }
 cardsFunction()
 
@@ -217,6 +218,7 @@ addNewCardBtn.addEventListener('click',()=>{
 
 cardNumberInp.forEach((inp,i)=>{
        inp.addEventListener('input',()=>{
+              inp.value = inp.value.replace(/\D/g, '')
               if(inp.value.length == 4){
                      if(i < 3){
                             inp.nextElementSibling.focus()
@@ -231,6 +233,27 @@ cardNumberInp.forEach((inp,i)=>{
 
 })
 
+nameInp.forEach((name)=>{
+       name.addEventListener('input',()=>{
+              name.value = name.value.replace(/[^ a-zA-Z\s]/g,'')
+       })
+})
+expiryInp.forEach((exp)=>{
+     exp.addEventListener('input',()=>{
+         exp.value= exp.value.replace(/\D/g,'')
+     })
+})
+
+cvvInp.forEach((cvv)=>{
+      cvv.addEventListener('input',()=>{
+        cvv.value = cvv.value.replace(/\D/g,'')
+      })
+})
+
+
+
+
+//////saving and add a new card
 saveCardBtn.addEventListener('click',()=>{
        let cardNumber = ''
        cardNumberInp.forEach((num)=>{
@@ -244,8 +267,23 @@ saveCardBtn.addEventListener('click',()=>{
               cvv:cvvInp[0].value,
               number:cardNumber
        }
-
+       nextCardId ++
+      if(checkInp.checked){
+             createScrollCircles()
+       }
        cards.push(newCard)
-       cardsFunction()
+      cardsFunction()
        goToState(1)
 })
+
+
+function createScrollCircles(){
+       scrollCirclesSection.innerHTML = ''
+       cards.forEach((val,i)=>{
+              let span = document.createElement('span')
+              span.classList.add('scrollCircles')
+              scrollCirclesSection.appendChild(span)
+
+             
+       })
+}
