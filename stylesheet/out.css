@@ -197,6 +197,9 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
+  .z-200 {
+    z-index: 200;
+  }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
   }

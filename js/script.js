@@ -190,6 +190,7 @@ let nextCardId = 3
 function cardsFunction(){
        cardSection.innerHTML = ''
        cards.forEach((item)=>{
+              if (!item.number) return
               let card = document.createElement('div')
               card.classList.add('card')
               let last4 = item.number.slice(-4)
@@ -275,6 +276,11 @@ saveCardBtn.addEventListener('click',()=>{
        cardNumberInp.forEach((num)=>{
               cardNumber += num.value
        })
+      if(cardNumber.length !== 16){
+       alert('please enter a valid 16-digit card number')
+       return
+      }
+     
 
        let newCard = {
               id: nextCardId,
