@@ -24,6 +24,7 @@ const addNewCardBtn = document.querySelector('.addNewCardBtn')
 const saveCardBtn = document.querySelector('.saveCardBtn')
 
 const details = document.querySelectorAll('.details')
+const popUp = document.querySelector('.popUp')
 /// switching between tabs
 
 
@@ -69,8 +70,9 @@ function  goToState(x){
 }
 
 
-link.forEach((val)=>{
+link.forEach((val,i)=>{
        val.addEventListener('click',()=>{
+              if(i == 1) popUp.style.display='flex'
               if(currentStep < state.length -1){
                      goToState(currentStep + 1)
               }
@@ -165,10 +167,23 @@ goBack.addEventListener('click',()=>{
 
 ///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
-const cards = [
+
+
+
+let getLocal = JSON.parse(localStorage.getItem('data'))
+const cards = getLocal && getLocal.length>0 ? getLocal : [
        {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234',id:1},
        {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199',id:2}
 ]
+
+/////gettig local storage onload /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
+
+
+ if(getLocal !=undefined){
+      console.log('getLocal :',getLocal)
+}
+
+/////gettig local storage onload /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
 let nextCardId = 3
 function cardsFunction(){
@@ -181,7 +196,7 @@ function cardsFunction(){
               let masked = '*'.repeat((item.number.slice(0,-4)).length)
               console.log(masked)
               let fullmasked = masked + last4
-              let displayNumber = fullmasked.match(/.{1,4}/g).join(' - ')
+              let displayNumber = fullmasked.match(/.{1,4}/g).join('-')
               card.dataset.id=item.id
               card.innerHTML=`
                <p class="text-white text-[15px] font-medium flex items-center justify-center name">${item.name}</p>
@@ -253,7 +268,7 @@ cvvInp.forEach((cvv)=>{
 
 
 
-//////saving and add a new card
+//////saving and add a new card/\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 saveCardBtn.addEventListener('click',()=>{
        let cardNumber = ''
        cardNumberInp.forEach((num)=>{
@@ -265,25 +280,45 @@ saveCardBtn.addEventListener('click',()=>{
               name:nameInp[0].value,
               expiry:expiryInp[0].value,
               cvv:cvvInp[0].value,
-              number:cardNumber
+              number:cardNumber,
+              saved:checkInp.checked
        }
+       console.log(newCard)
        nextCardId ++
-      if(checkInp.checked){
+     if(cards.length < 5){
+        if(checkInp.checked){
              createScrollCircles()
        }
        cards.push(newCard)
-      cardsFunction()
+       cardsFunction()
        goToState(1)
+     }else{
+              alert("you're not able to add more than 5 cards.")
+       }
+
+     let savedCardArray = cards.filter((card)=> (card.saved) === true)
+     localStorage.setItem('data',JSON.stringify(savedCardArray))
+     console.log(savedCardArray)
 })
 
 
+
+// //////// SCROLL circles function/\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 function createScrollCircles(){
        scrollCirclesSection.innerHTML = ''
        cards.forEach((val,i)=>{
               let span = document.createElement('span')
+              span.dataset.id = val.id
               span.classList.add('scrollCircles')
               scrollCirclesSection.appendChild(span)
 
+              
              
        })
 }
+
+
+
+document.querySelector('.returnBtn').addEventListener('click',()=>{
+       document.querySelector('.popUp').style.display='none'
+})

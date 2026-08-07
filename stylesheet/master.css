@@ -112,10 +112,14 @@
               @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
        }
        .nameInp{
-              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
+              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center capitalize
        }
        .cvvInp{
               @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
+       }
+       .returnBtn{
+              @apply w-fit flex items-center justify-center bg-violet text-off-white rounded-[10px] font-bold capitalize py-2.5 px-1
+              hover:bg-violet/75 cursor-pointer duration-300
        }
 }
 

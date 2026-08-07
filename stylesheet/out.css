@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-200: oklch(88.5% 0.062 18.334);
     --color-fuchsia-500: oklch(66.7% 0.295 322.15);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-black: #000;
@@ -183,6 +184,18 @@
   }
 }
 @layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .left-0 {
+    left: calc(var(--spacing) * 0);
+  }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
   }
@@ -198,6 +211,9 @@
   .flex {
     display: flex;
   }
+  .hidden {
+    display: none;
+  }
   .size-3 {
     width: calc(var(--spacing) * 3);
     height: calc(var(--spacing) * 3);
@@ -212,6 +228,9 @@
   }
   .h-5 {
     height: calc(var(--spacing) * 5);
+  }
+  .h-full {
+    height: 100%;
   }
   .w-3\/4 {
     width: calc(3 / 4 * 100%);
@@ -319,6 +338,9 @@
   }
   .bg-off-white {
     background-color: var(--color-off-white);
+  }
+  .bg-red-200 {
+    background-color: var(--color-red-200);
   }
   .bg-linear-to-t {
     --tw-gradient-position: to top;
@@ -904,6 +926,7 @@
     border-color: var(--color-indigo);
     padding-inline: calc(var(--spacing) * 1);
     color: var(--color-black);
+    text-transform: capitalize;
     --tw-outline-style: none;
     outline-style: none;
     &::placeholder {
@@ -931,6 +954,31 @@
     }
     &::placeholder {
       color: var(--color-gray);
+    }
+  }
+  .returnBtn {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: var(--color-violet);
+    padding-inline: calc(var(--spacing) * 1);
+    padding-block: calc(var(--spacing) * 2.5);
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-off-white);
+    text-transform: capitalize;
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #7B68EE 75%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-violet) 75%, transparent);
+        }
+      }
     }
   }
 }
