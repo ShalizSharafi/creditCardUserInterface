@@ -25,6 +25,7 @@ const saveCardBtn = document.querySelector('.saveCardBtn')
 
 const details = document.querySelectorAll('.details')
 const popUp = document.querySelector('.popUp')
+const scrollSection= document.querySelector('.scrollSection')
 /// switching between tabs
 
 
@@ -310,15 +311,27 @@ function createScrollCircles(){
               let span = document.createElement('span')
               span.dataset.id = val.id
               span.classList.add('scrollCircles')
-              scrollCirclesSection.appendChild(span)
-
-              
-             
+              scrollCirclesSection.appendChild(span)   
        })
 }
 
-
-
 document.querySelector('.returnBtn').addEventListener('click',()=>{
        document.querySelector('.popUp').style.display='none'
+})
+
+/////////filling the scrolling circle
+scrollSection.addEventListener('scroll',()=>{
+let totalScrollWidth = scrollSection.clientWidth
+console.log('total width: ',totalScrollWidth)
+
+       let scrollL = scrollSection.scrollLeft
+       console.log('scrollLeft: ',scrollL)
+       let cardPortion = 100/cards.length 
+       let calcSpot = (cardPortion * totalScrollWidth)/100
+       let circleIndex = Math.floor(scrollL / calcSpot)
+       let circles = document.querySelectorAll('.scrollCircles')
+      circles.forEach((val,i)=>{
+       val.classList.toggle('filling', i === circleIndex)
+      })
+       
 })
