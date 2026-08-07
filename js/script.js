@@ -26,6 +26,12 @@ const saveCardBtn = document.querySelector('.saveCardBtn')
 const details = document.querySelectorAll('.details')
 const popUp = document.querySelector('.popUp')
 const scrollSection= document.querySelector('.scrollSection')
+
+const topCardNameInp = document.querySelector('.topCardNameInp')
+const topCardNumberInps = document.querySelectorAll('.topCardNumberInps>span')
+const topCardEpiryInp = document.querySelector('.topCardEpiryInp')
+const topCardCVVInp = document.querySelector('.topCardCVVInp')
+
 /// switching between tabs
 
 
@@ -169,8 +175,6 @@ goBack.addEventListener('click',()=>{
 ///////second TAB checkout TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
 
 
-
-
 let getLocal = JSON.parse(localStorage.getItem('data'))
 const cards = getLocal && getLocal.length>0 ? getLocal : [
        {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234',id:1},
@@ -241,7 +245,7 @@ addNewCardBtn.addEventListener('click',()=>{
        goToState(2)
 })
 
-cardNumberInp.forEach((inp,i)=>{
+cardNumberInp.forEach((inp,i,arr)=>{
        inp.addEventListener('input',()=>{
               inp.value = inp.value.replace(/\D/g, '')
               if(inp.value.length == 4){
@@ -254,24 +258,35 @@ cardNumberInp.forEach((inp,i)=>{
         if (inp.value.length >= 4) {
                 inp.value=inp.value.slice(0,4)
             }
-       })
+/////this part
+             topCardNumberInps[i].innerText = inp.value
+/////this part
 
+       })
 })
+
+
+
 
 nameInp.forEach((name)=>{
        name.addEventListener('input',()=>{
               name.value = name.value.replace(/[^ a-zA-Z\s]/g,'')
+              topCardNameInp.innerText = name.value
        })
 })
 expiryInp.forEach((exp)=>{
      exp.addEventListener('input',()=>{
          exp.value= exp.value.replace(/\D/g,'')
+         if(exp.value.length >=4) exp.value=exp.value.slice(0,4)
+         topCardEpiryInp.children[1].innerText = exp.value
      })
 })
 
 cvvInp.forEach((cvv)=>{
       cvv.addEventListener('input',()=>{
         cvv.value = cvv.value.replace(/\D/g,'')
+        if(cvv.value.length >=3) cvv.value=cvv.value.slice(0,3)
+        topCardCVVInp.children[1].innerText = cvv.value
       })
 })
 
@@ -289,7 +304,6 @@ saveCardBtn.addEventListener('click',()=>{
        return
       }
      
-
        let newCard = {
               id: nextCardId,
               name:nameInp[0].value,
