@@ -12,6 +12,17 @@ const goBack = document.querySelector('.goBack')
 const totalAmount = document.querySelector('.totalAmount')
 const cardSection = document.querySelector('.cardSection')
 
+
+const expiryInp = document.querySelectorAll('.expiryInp')
+const nameInp = document.querySelectorAll('.nameInp')
+const cvvInp = document.querySelectorAll('.cvvInp')
+const cardNumberInp = document.querySelectorAll('.cardNumberInp')
+const cardComponents = document.querySelectorAll('.cardComponents')
+
+
+const addNewCardBtn = document.querySelector('.addNewCardBtn')
+const saveCardBtn = document.querySelector('.saveCardBtn')
+
 const details = document.querySelectorAll('.details')
 /// switching between tabs
 
@@ -146,9 +157,9 @@ const cards = [
        {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199',id:2}
 ]
 
+let nextCardId = 3
 function cardsFunction(){
        cardSection.innerHTML = ''
-              let nextCardId = 3
        cards.forEach((item)=>{
               let card = document.createElement('div')
               card.classList.add('card')
@@ -196,3 +207,45 @@ function cardsFunction(){
 }
 cardsFunction()
 
+
+///////third TAB new card TAB /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
+
+
+addNewCardBtn.addEventListener('click',()=>{
+       goToState(2)
+})
+
+cardNumberInp.forEach((inp,i)=>{
+       inp.addEventListener('input',()=>{
+              if(inp.value.length == 4){
+                     if(i < 3){
+                            inp.nextElementSibling.focus()
+                     }else{
+                            inp.closest('.cardNumber').nextElementSibling.children[1].focus()
+                     }
+       }
+        if (inp.value.length >= 4) {
+                inp.value=inp.value.slice(0,4)
+            }
+       })
+
+})
+
+saveCardBtn.addEventListener('click',()=>{
+       let cardNumber = ''
+       cardNumberInp.forEach((num)=>{
+              cardNumber += num.value
+       })
+
+       let newCard = {
+              id: nextCardId,
+              name:nameInp[0].value,
+              expiry:expiryInp[0].value,
+              cvv:cvvInp[0].value,
+              number:cardNumber
+       }
+
+       cards.push(newCard)
+       cardsFunction()
+       goToState(1)
+})

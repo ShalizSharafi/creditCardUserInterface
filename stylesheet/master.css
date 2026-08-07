@@ -108,6 +108,15 @@
        .cardNumberInp{
               @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
        }
+       .expiryInp{
+              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
+       }
+       .nameInp{
+              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
+       }
+       .cvvInp{
+              @apply w-12.5 border-[0.5px] border-indigo text-black outline-none rounded-[5px] placeholder:text-gray  placeholder:pl-1 px-1 flex items-center justify-center
+       }
 }
 
 
