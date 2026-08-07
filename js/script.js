@@ -215,6 +215,14 @@ function cardsFunction(){
                                                         <span class="text-off-white text-[12px] cvv ">${item.cvv}</span>
                                                  </div>
                                           </div>
+
+                                          <div class="absolute hidden w-full h-full top-0 left-0 bg-off-white/75 rounded-[10px] backdrop-blur-2xl items-center justify-center deleteOverlay">
+                                          <span class="w-10 h-10 flex items-center justify-center deleteBtn hover:bg-off-white/80 duration-300 rounded-[5px]">
+                                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="violet" class="size-12">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+                                          </span>
+                                          </div>
               `
               
               cardSection.appendChild(card)
@@ -340,4 +348,43 @@ console.log('total width: ',totalScrollWidth)
        val.classList.toggle('filling', i === circleIndex)
       })
        
+})
+
+
+
+///////deleting card section /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
+let setTime 
+cardSection.addEventListener('pointerdown',(e)=>{
+              e.stopPropagation()
+       let selectedCard = e.target.closest('.card')
+       if(!selectedCard) return
+      setTime = setTimeout(() => {
+             let deleteOverlay = selectedCard.querySelector('.deleteOverlay') 
+             deleteOverlay.style.display='flex'
+       }, 500);
+})
+       
+cardSection.addEventListener('click',(e)=>{
+       let deleteOverlay = e.target.closest('.deleteOverlay')
+       if(!deleteOverlay) return
+       let deleteBtn = deleteOverlay.children[0]
+       if (!deleteBtn) return
+
+       let currentCard = deleteBtn.closest('.card')
+       let cardId = Number(currentCard.getAttribute('data-id'))
+
+       if(confirm('By removing the card your information would no longer be available, are you sure you want to remove the card?')) {
+              let cardIndex = cards.findIndex((item)=> item.id == cardId)
+              cards.splice(cardIndex,1)
+              let savedCardArray = cards.filter((card) => card.saved === true)
+              localStorage.setItem('data', JSON.stringify(savedCardArray))
+              cardsFunction()
+              createScrollCircles()
+       }else{
+               deleteOverlay.style.display = 'none'
+       }
+})
+
+cardSection.addEventListener('pointerup',()=>{
+       clearTimeout(setTime)
 })

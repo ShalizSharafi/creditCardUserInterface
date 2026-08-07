@@ -23,6 +23,7 @@
     --font-weight-medium: 500;
     --font-weight-bold: 700;
     --blur-sm: 8px;
+    --blur-2xl: 40px;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-violet: #7B68EE;
@@ -197,9 +198,6 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
-  .z-200 {
-    z-index: 200;
-  }
   .mt-5 {
     margin-top: calc(var(--spacing) * 5);
   }
@@ -230,11 +228,26 @@
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
   }
+  .size-8 {
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+  }
+  .size-12 {
+    width: calc(var(--spacing) * 12);
+    height: calc(var(--spacing) * 12);
+  }
+  .size-16 {
+    width: calc(var(--spacing) * 16);
+    height: calc(var(--spacing) * 16);
+  }
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
   .h-8 {
     height: calc(var(--spacing) * 8);
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
   }
   .h-16 {
     height: calc(var(--spacing) * 16);
@@ -259,6 +272,9 @@
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
   }
   .w-16 {
     width: calc(var(--spacing) * 16);
@@ -366,6 +382,18 @@
   }
   .bg-off-white {
     background-color: var(--color-off-white);
+  }
+  .bg-off-white\/75 {
+    background-color: color-mix(in srgb, #FAFAFA 75%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-off-white) 75%, transparent);
+    }
+  }
+  .bg-off-white\/90 {
+    background-color: color-mix(in srgb, #FAFAFA 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-off-white) 90%, transparent);
+    }
   }
   .bg-linear-to-br {
     --tw-gradient-position: to bottom right;
@@ -511,6 +539,11 @@
       --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-gray) 50%, transparent) var(--tw-shadow-alpha), transparent);
     }
   }
+  .backdrop-blur-2xl {
+    --tw-backdrop-blur: blur(var(--blur-2xl));
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
   .backdrop-blur-sm {
     --tw-backdrop-blur: blur(var(--blur-sm));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
@@ -519,6 +552,10 @@
   .duration-200 {
     --tw-duration: 200ms;
     transition-duration: 200ms;
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
   }
   .\*\:flex {
     :is(& > *) {
@@ -553,10 +590,44 @@
       right: calc(50% + 20px);
     }
   }
+  .hover\:bg-gray {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-gray);
+      }
+    }
+  }
+  .hover\:bg-gray\/80 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #8B8B9A 80%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-gray) 80%, transparent);
+        }
+      }
+    }
+  }
   .hover\:bg-indigo {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-indigo);
+      }
+    }
+  }
+  .hover\:bg-off-white {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-off-white);
+      }
+    }
+  }
+  .hover\:bg-off-white\/80 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #FAFAFA 80%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-off-white) 80%, transparent);
+        }
       }
     }
   }
@@ -845,11 +916,13 @@
     }
   }
   .card {
+    position: relative;
     display: flex;
     width: 250px;
     cursor: pointer;
     flex-wrap: wrap;
     gap: calc(var(--spacing) * 2.5);
+    overflow: hidden;
     border-radius: 10px;
     --tw-gradient-position: to bottom left;
     @supports (background-image: linear-gradient(in lab, red, red)) {
