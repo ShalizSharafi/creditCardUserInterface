@@ -177,8 +177,8 @@ goBack.addEventListener('click',()=>{
 
 let getLocal = JSON.parse(localStorage.getItem('data'))
 const cards = getLocal && getLocal.length>0 ? getLocal : [
-       {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234',id:1},
-       {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199',id:2}
+       {name:'Bauer Targaryen Moriarty',number:'2234678754431234',expiry:'2024',cvv:'234',id:1,saved:true},
+       {name:'Blucifer Cornelius Rex',number:'1991200205079102',expiry:'2026',cvv:'199',id:2,saved:true}
 ]
 
 /////gettig local storage onload /\/\/\/\/\////\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/*************************&&&&&&&&&&&&&&&%%%%%%%%%#######@@@@@!!!!!!!!??????//////////// */
