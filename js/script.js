@@ -26,6 +26,7 @@ const saveCardBtn = document.querySelector('.saveCardBtn')
 const details = document.querySelectorAll('.details')
 const popUp = document.querySelector('.popUp')
 const scrollSection= document.querySelector('.scrollSection')
+const popupTimer = document.querySelector('.popupTimer')
 
 const topCardNameInp = document.querySelector('.topCardNameInp')
 const topCardNumberInps = document.querySelectorAll('.topCardNumberInps>span')
@@ -76,10 +77,30 @@ function  goToState(x){
        currentStep = x
 }
 
-
+let intervalSet 
+let secondsRemain 
 link.forEach((val,i)=>{
        val.addEventListener('click',()=>{
-              if(i == 1) popUp.style.display='flex'
+              if(i == 1){
+                    popUp.style.display='flex'
+                     secondsRemain = 6
+                     clearInterval(intervalSet)
+                     fillCircle.forEach((val)=>{
+                                   val.style.display='none'
+                            })
+                     intervalSet= setInterval(() => {
+                            secondsRemain --
+                            let minutes = Math.floor(secondsRemain / 60)
+                            let seconds = secondsRemain % 60
+                            popupTimer.innerText = String(minutes).padStart(2,'0') +  ':' + String(seconds).padStart(2,'0')
+
+                            if(secondsRemain <= 0){
+                                   clearInterval(intervalSet)
+                            }
+                            
+                     }, 1000);
+                     
+              }
               if(currentStep < state.length -1){
                      goToState(currentStep + 1)
               }
@@ -345,6 +366,10 @@ function createScrollCircles(){
 
 document.querySelector('.returnBtn').addEventListener('click',()=>{
        document.querySelector('.popUp').style.display='none'
+       clearInterval(intervalSet)
+       fillCircle.forEach((val)=>{
+                                   val.style.display='flex'
+                            })
 })
 
 /////////filling the scrolling circle
